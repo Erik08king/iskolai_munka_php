@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
+    for me | original = git clone https://github.com/Erik08king/iskolai_munka_php.git
+
 */
 
 Route::get('/', function () {
