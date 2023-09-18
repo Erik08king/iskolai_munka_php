@@ -19,7 +19,7 @@ class AutoController extends Controller
 
     public function listaz(){
         $autok = Auto::all();
-        return view('lista',["autok"=> $autok,"motorTipusok" => $this->$motorTipusok,"meghajtastip" => $this->$meghajtastip]);
+        return view('lista',["autok"=> $autok,"motorTipusok" => $this->motorTipusok,"meghajtastip" => $this->meghajtastip]);
     }
 
     public function felvetel(){
