@@ -25,7 +25,7 @@
                             <td>{{$auto->szin_id}}</td>
                             <td>{{$meghajtastip[$auto->meghajtas]}}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-dark">módósítás</button>
+                                <a href="./modositas/{{$auto->a_id}}" class="btn btn-sm btn-dark">módósítás</a>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-sm btn-danger">törlés</button>

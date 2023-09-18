@@ -30,7 +30,7 @@
 
   @yield('content')
 
-<footer class="contatiner-fluid bg-dark text-white">
+<footer class="contatiner-fluid bg-dark text-white mt-5">
 
     <div class="container">
         <div class="row col-12">
