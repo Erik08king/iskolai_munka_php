@@ -15,7 +15,7 @@
     
 <!-- Grey with black text -->
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
-    <div class="container-fluid">
+    <div class="container-fluid bg-ifno">
       <ul class="navbar-nav bg-dark">
         <li class="nav-item">
           <a class="nav-link text-white" href="{{route('fooldal')}}">Lista</a>
