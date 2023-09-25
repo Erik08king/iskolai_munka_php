@@ -19,7 +19,7 @@ class AutoController extends Controller
     'h' => "Hátsomeghajtás"];
 
     public function listaz(){
-        $autok = Auto::all();
+        $autok = Auto::paginate(2);
         return view('lista',["autok"=> $autok,"motorTipusok" => $this->motorTipusok,"meghajtastip" => $this->meghajtastip]);
     }
 
@@ -68,6 +68,54 @@ class AutoController extends Controller
         $auto = Auto::find($aid,["autok"=> $autok,"motorTipusok" => $this->motorTipusok,"meghajtastip" => $this->meghajtastip, "szinek" => $szinek]);
     }
 
+    public function modositasmentese(){
+        $auto = Auto::find($aid)
+        if($auto !== NULL)}{
+
+            $req->validate(
+                [
+                    "rendszam" => "required|min:6|max:10|alpha_num:ascii",
+                    "motor_tipus" => "required",
+                    "meghajtas_tipus" => "required",
+                    "szin_tp" => "required|min:1"
+        
+                ],[
+                    "rendszam.required" => "A mező kitöltése kötelező!",
+                    "rendszam.min" => "Minimum 6 karaktert!",
+                    "rendszam.max" => "Maximum 10 karaktert!",
+                    "rendszam.alpha_num" => "Csak a-Z és 0-9",
+        
+                    "motor_tipus.required" => "Vállasz mezőt!",
+        
+                    "meghajtas_tipus.required" => "Vállasz mezőt!",
+        
+                    "szin_tp.required" => "Vállasz mezőt!",
+                    "szin_tp.min" => "Vállasz mezőt!"
+                ]
+                );
+
+                $auto->rendszam = $req->input('rendszam');
+                $auto->szin_id = $req->input('szin_id');
+                $auto->meghajtas = $req->input('meghajtas');
+                $auto->motor_tipus = $req->input('motor_tipus');
+                $auto->save();
+
+                reutrn readirect('/modositas/{aid}')->with("modositasKesz".'1')
+
+        }else {
+            return readirect("/");
+        }
+
+    }
+
+
+    public function torles(Reuest $req){
+        $auto=Auto::find($req->input('aid'));
+        $auto->delete();
+        $data['error'] = false;
+        return response()->json($data);
+
+    }
 }
 
 

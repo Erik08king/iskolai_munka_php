@@ -15,6 +15,9 @@
                             <div></div>
                         @endif
                             
+                        @if (session()->has('modositasKesz'))
+                            <div class="alert">modositasKesz</div>
+                    @endif
 
 
                         @csrf
@@ -35,7 +38,7 @@
                             @endforeach
                         </select>
                         </div>
-                        @error('rendszam')
+                        @error('motor_tipus')
                         <div class="alert bg">{{$message}}</div>
                         @enderror
                         
@@ -50,7 +53,7 @@
                             </select>
                         </div>
                         
-                        @error('rendszam')
+                        @error('szin_tp')
                         <div class="alert">{{$message}}</div>
                         @enderror
  
@@ -63,7 +66,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        @error('rendszam')
+                        @error('meghajtas_tipus')
                         <div class="alert">{{$message}}</div>
                         @enderror
 

@@ -18,7 +18,7 @@
                     </tr>
 
                     @foreach ($autok as $auto)
-                        <tr>
+                        <tr id="sor_{{$auto->a_id}}">
                             <td>{{$auto->a_id}}</td>
                             <td>{{$auto->rendszam}}</td>
                             <td>{{ $motorTipusok[$auto->motor_tipus]}}</td>
@@ -28,16 +28,50 @@
                                 <a href="./modositas/{{$auto->a_id}}" class="btn btn-sm btn-dark">módósítás</a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger">törlés</button>
+                                <button id="torlesGomb_{{$auto->a_id}}" type="button" class="btn btn-sm btn-danger" onclick="torles({{$auto->a_id}});">törlés</button>
                             </td>
                         </tr>
                     @endforeach
 
                 </table>
 
+                {{$autok->links() }}
+
             </div>
         </div>
     </div>
 
+    <script>
+
+        function torles(aid){
+            $.ajax({
+                url:"./torles",
+                type: "POST",
+                cache: false,
+                async:false,
+                data:{"aid":aid},
+                header:{
+                    "X-CSRF-TOKKEN":$('meta[name="csrf-tokken"]').attr('content')
+                },
+                beforSend:function(){
+                    $("#torlesGomb_"+aid).attr("disable",true);
+                    $("#torlesGomb_"+aid).html("Folyamatban...");
+                
+                },
+                success:function(data){
+                    if(data.error ==false;){
+                        $("#sor_"+aid).remove();
+                    }else{
+                        $("#torlesGomb_"+aid).attr("disable",false);
+                        $("#torlesGomb_"+aid).html("Törlés");
+                    }
+
+                }
+
+            }
+            )
+        }
+
+    </script>
 
 @endsection
